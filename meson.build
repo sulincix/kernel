@@ -16,12 +16,16 @@ srcs += run_command(
     'find', './src', '-type', 'f', '-iname', '*.c'
     ).stdout().strip().split('\n')
 
+
+
+real_vala_srcs = []
 foreach src: vala_srcs
-    real_src = run_command('realpath', src).stdout().strip()
-    run_command('sh', '-c',
-        'cd ' + meson.current_build_dir() + '; valac '+ real_src + ' --ccode ', check:true)
-    srcs += [ meson.current_build_dir() / real_src.split('/')[-1].replace('.vala','.c') ]
+    real_vala_srcs += run_command('realpath', src).stdout().strip()
+    srcs += [ meson.current_build_dir() / src.split('/')[-1].replace('.vala','.c') ]
 endforeach
+
+run_command('sh', '-c',
+        'cd ' + meson.current_build_dir() + '; valac '+ ' '.join(real_vala_srcs) + ' --ccode ', check:true)
 
 args = ['-nostdlib', '-no-pie', '-m32']
 args += ['-I' + meson.current_source_dir() / 'include' ]

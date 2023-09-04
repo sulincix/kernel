@@ -1,1 +1,3 @@
-extern void mmio_write(int addr, int val);
+namespace mmio{
+    extern void write(int addr, int val);
+}
