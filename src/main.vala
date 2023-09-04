@@ -1,8 +1,7 @@
-extern void write_mem(int addr, int val);
-
 namespace kernel {
-void main(){
-    while(true);
-}
+    int i=0;
+    void main(){
+        while(true);
+    }
 }
 

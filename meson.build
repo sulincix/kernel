@@ -7,15 +7,17 @@ project(
 # generate C from vala
 vala_srcs = run_command(
     'find', './src', '-type', 'f', '-iname', '*.vala'
-    ).stdout().strip().split(' ')
+    ).stdout().strip().split('\n')
+
+message(vala_srcs)
 
 srcs = ['./src/boot.S']
 srcs += run_command(
     'find', './src', '-type', 'f', '-iname', '*.c'
-    ).stdout().strip().split(' ')
+    ).stdout().strip().split('\n')
 
 foreach src: vala_srcs
-    real_src = run_command('realpath', src).stdout().strip().split(' ')[0]
+    real_src = run_command('realpath', src).stdout().strip()
     run_command('sh', '-c',
         'cd ' + meson.current_build_dir() + '; valac '+ real_src + ' --ccode ', check:true)
     srcs += [ meson.current_build_dir() / real_src.split('/')[-1].replace('.vala','.c') ]

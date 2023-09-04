@@ -1,0 +1,1 @@
+extern void mmio_write(int addr, int val);
