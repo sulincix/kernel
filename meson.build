@@ -11,9 +11,12 @@ vala_srcs = run_command(
 
 message(vala_srcs)
 
-srcs = ['./src/boot.S']
+srcs = ['./src/boot.s']
 srcs += run_command(
     'find', './src', '-type', 'f', '-iname', '*.c'
+    ).stdout().strip().split('\n')
+srcs += run_command(
+    'find', './src', '-type', 'f', '-iname', '*.s'
     ).stdout().strip().split('\n')
 
 
@@ -27,7 +30,7 @@ endforeach
 run_command('sh', '-c',
         'cd ' + meson.current_build_dir() + '; valac '+ ' '.join(real_vala_srcs) + ' --ccode ', check:true)
 
-args = ['-nostdlib', '-no-pie', '-m32']
+args = ['-nostdlib', '-no-pie', '-m32', '-O3']
 args += ['-I' + meson.current_source_dir() / 'include' ]
 args += ['-T' + meson.current_source_dir() / 'src/link.ld' ]
 

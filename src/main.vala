@@ -1,4 +1,4 @@
-
+extern void vga_init();
 namespace kernel {
     int i=0;
     void main(){
