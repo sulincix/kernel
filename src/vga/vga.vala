@@ -1,3 +1,3 @@
 namespace vga {
-    extern void init();
+    extern void put(int x, int y, int color);
 }

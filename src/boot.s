@@ -1,3 +1,6 @@
+
+#define FIXADDR(addr) (((addr)-_int32)+0x7C00)
+
 .set ALIGN,    1<<0
 .set MEMINFO,  1<<1
 .set FLAGS,    ALIGN | MEMINFO
@@ -21,8 +24,15 @@ stack_top:
 .global _start
 .type _start, @function
 
+_protsec:
+	mov %eax,%cr0
+	inc %eax
+	mov %cr0,%eax
+	ret
+
 _start:
 	mov $stack_top, %esp
+	call _protsec
 	call kernel_main
 	cli
 1:	hlt

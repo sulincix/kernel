@@ -30,7 +30,7 @@ endforeach
 run_command('sh', '-c',
         'cd ' + meson.current_build_dir() + '; valac '+ ' '.join(real_vala_srcs) + ' --ccode ', check:true)
 
-args = ['-nostdlib', '-no-pie', '-m32', '-O3']
+args = ['-nostdlib', '-no-pie', '-m32', '-O0']
 args += ['-I' + meson.current_source_dir() / 'include' ]
 args += ['-T' + meson.current_source_dir() / 'src/link.ld' ]
 
