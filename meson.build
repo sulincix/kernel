@@ -32,7 +32,7 @@ run_command('sh', '-c',
 
 args = ['-nostdlib', '-no-pie', '-m32', '-O0']
 args += ['-I' + meson.current_source_dir() / 'include' ]
-args += ['-T' + meson.current_source_dir() / 'src/link.ld' ]
+args += ['-T' + meson.current_source_dir() / 'src/linker.ld' ]
 
 foreach arg: args
     add_project_arguments(arg, language: 'c')
