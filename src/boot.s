@@ -1,4 +1,3 @@
-
 #define FIXADDR(addr) (((addr)-_int32)+0x7C00)
 
 .set ALIGN,    1<<0
@@ -32,9 +31,10 @@ _protsec:
 
 _start:
 	mov $stack_top, %esp
+	cli
 	call _protsec
 	call kernel_main
-	cli
+
 1:	hlt
 	jmp 1b
 

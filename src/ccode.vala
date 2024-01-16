@@ -32,3 +32,7 @@ namespace draw {
     public extern void circle(int centerX, int centerY, int radius, int color);
     public extern void box(int x1, int y1, int x2, int y2, int color);
 }
+
+namespace timer {
+    public extern void init();
+}
