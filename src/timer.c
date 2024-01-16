@@ -1,5 +1,5 @@
 #include <stdint.h>
-#include "io.h"
+#include <io.h>
 
 #define PIT_FREQUENCY 1193182
 
