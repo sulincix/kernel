@@ -23,16 +23,9 @@ stack_top:
 .global _start
 .type _start, @function
 
-_protsec:
-	mov %eax,%cr0
-	inc %eax
-	mov %cr0,%eax
-	ret
-
 _start:
 	mov $stack_top, %esp
 	cli
-	call _protsec
 	call kernel_main
 
 1:	hlt
